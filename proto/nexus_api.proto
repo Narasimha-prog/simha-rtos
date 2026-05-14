@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// Defines the data metrics transmitted back and forth
+message CommandRequest {
+    uint32 target_id = 1;
+    string action = 2;
+    int32 payload_value = 3;
+}
+
+message TelemetryResponse {
+    uint32 device_id = 1;
+    string status_msg = 2;
+    uint32 uptime_seconds = 3;
+    bool ExecutionSuccess = 4;
+}
+
+// Service definition mapped out for cross-platform clients
+service NexusRemoteService {
+    rpc ExecuteCommand(CommandRequest) returns (TelemetryResponse);
+}
