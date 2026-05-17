@@ -1,0 +1,18 @@
+# simha-rtos Simulation Script
+
+using sysbus
+
+# 1. Create the machine
+mach create "Nexus-Core"
+machine LoadPlatformDescription @sim/nexus_esp32.repl
+
+# 2. Open a window to see CLI output
+showAnalyzer uart0
+
+# 3. Load the binary (we will build this next)
+macro reset
+"""
+    sysbus LoadELF @build/nexus_os.elf
+"""
+
+runMacro $reset

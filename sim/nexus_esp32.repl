@@ -1,0 +1,17 @@
+
+
+
+// Nexus-OS Virtual Hardware Definition
+cpu: CPU.Xtensa @ sysbus
+    cpuType: "esp32"
+
+    
+data_ram: Memory.MappedMemory @ sysbus 0x3FFB0000
+    size: 0x20000
+
+memory: Memory.MappedMemory @ sysbus 0x40000000
+    size: 0x400000  // 4MB RAM
+// Use a generic UART that Renode always recognizes
+uart0: UART.NS16550 @ sysbus 0x3FF40000
+    IRQ -> cpu@0
+
